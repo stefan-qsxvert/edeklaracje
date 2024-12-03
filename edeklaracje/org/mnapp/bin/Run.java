@@ -1,3 +1,5 @@
+//ssh-keygen -t rsa -b 4096 -C "qsxvert@gmail.com"
+
 package org.mnapp.bin;
 
 import java.io.BufferedWriter;
