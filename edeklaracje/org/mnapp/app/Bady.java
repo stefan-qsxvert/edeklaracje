@@ -90,6 +90,12 @@ public class Bady {
 //			for (int i =0; listOfRfIds != null; i++) {
 //			String[] listRfIds = bfReader.lines().toList().toString().split(", ");
 //				String listOfRfIds = bfReader.readLine();
+			
+//			while ((line = rd.readLine()) != null) {
+//		        // buffer.append(line);
+//		        message += line;
+//		    }
+			
 			bfReader.close();
 			System.out.println(file.exists());
 			System.out.println(listOfRfIds);
