@@ -125,7 +125,7 @@ public class Bady {
 				// Utwórz żądanie UPO 
 				RequestUPO requestUPO = new RequestUPO(); 
 				
-				id = new String("88a60f9d03045f163e10790ace36ebc3");
+//				id = new String("88a60f9d03045f163e10790ace36ebc3");
 				requestUPO.setRefId(refId); // Ustaw refID dokumentu 
 				
 				upo = new Holder();
@@ -137,8 +137,11 @@ public class Bady {
 				
 				
 				System.out.println("UPO status: " + upo.value + " " + status.value + " " + statusOpis.value);
-				BufferedWriter bfw = new BufferedWriter(new FileWriter("/home/tee/refIds/" + refId, false));
+				BufferedWriter bfw = new BufferedWriter(new FileWriter("/home/tee/refIds/" + refId));
 //				bfw.newLine();
+				if (upo.value == null) {
+					upo = new Holder("0");
+				}
 				bfw.write(ZonedDateTime.now().toString() + "_" + refId + "_" + status.value + "_" + statusOpis.value);
 				bfw.newLine();
 				bfw.write(upo.value);
