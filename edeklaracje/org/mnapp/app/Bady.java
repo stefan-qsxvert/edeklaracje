@@ -72,7 +72,7 @@ public class Bady {
 					System.out.println("Response: " + status.value );
 					System.out.println("Response: " + statusOpis.value );
 					
-					File file = new File("/home/tee/refIds/" + "_" + refId.value);
+					File file = new File("/home/tee/refIds/" + refId.value);
 					file.createNewFile();
 					System.out.println(file.exists());
 					BufferedWriter bfw = new BufferedWriter(new FileWriter(file));

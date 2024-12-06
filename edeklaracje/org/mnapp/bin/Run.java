@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.ZonedDateTime;
 import java.util.Scanner;
 
@@ -36,7 +37,15 @@ public class Run {
 				bady.sendDoc(docInByteArr);
 			break;
 		case "2":
-				bady.getUPO();
+			
+				File files = new File("/home/tee/refIds/");
+				String[] list =files.list();
+				
+				for (int i = 0; i < list.length; i++ ) {
+				System.out.println(list[i]);
+				}
+				
+//				bady.getUPO();
 			break;
 		case "3":
 				String wsdl = "https://test-bramka.edeklaracje.gov.pl/uslugi/dokumenty?wsdl";
