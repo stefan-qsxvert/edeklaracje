@@ -65,16 +65,23 @@ public class Bady {
 					status = new Holder();
 					statusOpis = new Holder();
 					
+//					refId = new Holder("88a60f9d03045f163e10790ace36ebc3");
+					
 					port.sendDocument(document, refId, status, statusOpis); 
 					System.out.println("Response: " + refId.value );
 					System.out.println("Response: " + status.value );
 					System.out.println("Response: " + statusOpis.value );
 					
-					BufferedWriter bfw = new BufferedWriter(new FileWriter("/home/tee/test.list", true));
+					File file = new File("/home/tee/refIds/" + "_" + refId.value);
+					file.createNewFile();
+					System.out.println(file.exists());
+					BufferedWriter bfw = new BufferedWriter(new FileWriter(file));
 					bfw.newLine();
-					bfw.write(ZonedDateTime.now().toString() + "_" + refId.value + "_" + status.value + " " + statusOpis.value);
+					bfw.write(ZonedDateTime.now().toString() + "_" + refId.value + "_" + status.value + "_" + statusOpis.value);
 					bfw.flush();
 					bfw.close();
+					
+					
 					
 				} catch (Exception e) { 
 						e.printStackTrace();
@@ -85,20 +92,17 @@ public class Bady {
 		public void listOfDocument(String list) throws IOException {
 			File file = new File(list);
 			BufferedReader bfReader = new BufferedReader(new FileReader(file));
-			String listOfRfIds = bfReader.lines().toArray().toString();
+//			String listOfRfIds = bfReader.lines().toArray().toString();
 //			List<String> listOfRfIds = bfReader.lines().toList();
-//			for (int i =0; listOfRfIds != null; i++) {
-//			String[] listRfIds = bfReader.lines().toList().toString().split(", ");
-//				String listOfRfIds = bfReader.readLine();
-			
-//			while ((line = rd.readLine()) != null) {
-//		        // buffer.append(line);
-//		        message += line;
-//		    }
-			
+			String[] listOfRfIds = bfReader.lines().toList().toString().split(";");
 			bfReader.close();
+			for (int i =0; i < listOfRfIds.length; i++) {
+				System.out.println(listOfRfIds[i]);
+		    }
+			
+			
 			System.out.println(file.exists());
-			System.out.println(listOfRfIds);
+			
 //			}
 			
 		}
