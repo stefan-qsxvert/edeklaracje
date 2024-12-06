@@ -85,7 +85,7 @@ public class Bady {
 		public void listOfDocument(String list) throws IOException {
 			File file = new File(list);
 			BufferedReader bfReader = new BufferedReader(new FileReader(file));
-			String listOfRfIds = bfReader.lines().collect(Collectors.joining());
+			String listOfRfIds = bfReader.lines().toArray().toString();
 //			List<String> listOfRfIds = bfReader.lines().toList();
 //			for (int i =0; listOfRfIds != null; i++) {
 //			String[] listRfIds = bfReader.lines().toList().toString().split(", ");
