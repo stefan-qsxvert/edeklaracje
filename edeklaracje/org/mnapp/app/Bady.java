@@ -107,7 +107,7 @@ public class Bady {
 			
 		}
 		
-		public void getUPO() {
+		public void getUPO(String refId) {
 			try { 
 //				// Załaduj klucz prywatny z keystore 
 				 KeyStore keyStore = KeyStore.getInstance("JKS"); 
@@ -133,9 +133,18 @@ public class Bady {
 				statusOpis = new Holder();
 				
 				// Wywołaj metodę requestUPO 
-				port.requestUPO(id, "pl", upo, status, statusOpis);
+				port.requestUPO(refId, "pl", upo, status, statusOpis);
+				
 				
 				System.out.println("UPO status: " + upo.value + " " + status.value + " " + statusOpis.value);
+				BufferedWriter bfw = new BufferedWriter(new FileWriter("/home/tee/refIds/" + refId, false));
+//				bfw.newLine();
+				bfw.write(ZonedDateTime.now().toString() + "_" + refId + "_" + status.value + "_" + statusOpis.value);
+				bfw.newLine();
+				bfw.write(upo.value);
+				bfw.flush();
+				bfw.close();
+			
 			} catch (Exception e) { 
 				e.printStackTrace(); 
 //				System.out.println("nydyrydy!!!");
