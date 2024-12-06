@@ -42,10 +42,11 @@ public class Run {
 				String[] list =files.list();
 				
 				for (int i = 0; i < list.length; i++ ) {
-				System.out.println(list[i]);
+					System.out.println(list[i]);
+					bady.getUPO(list[i]);
 				}
 				
-//				bady.getUPO();
+//				
 			break;
 		case "3":
 				String wsdl = "https://test-bramka.edeklaracje.gov.pl/uslugi/dokumenty?wsdl";

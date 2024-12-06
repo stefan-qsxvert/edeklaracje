@@ -126,7 +126,7 @@ public class Bady {
 				RequestUPO requestUPO = new RequestUPO(); 
 				
 				id = new String("88a60f9d03045f163e10790ace36ebc3");
-				requestUPO.setRefId(id); // Ustaw refID dokumentu 
+				requestUPO.setRefId(refId); // Ustaw refID dokumentu 
 				
 				upo = new Holder();
 				status = new Holder();
