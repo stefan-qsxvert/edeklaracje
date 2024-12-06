@@ -4,20 +4,18 @@ package org.mnapp.bin;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.Scanner;
 
 import org.mnapp.app.Bady;
 import org.mnapp.app.WsdlToJavaGenerator;
 
-import jakarta.xml.ws.Holder;
-
 
 public class Run {
+
+	private static Scanner scan;
 
 	public static void main(String[] args) throws IOException {
 		
@@ -26,8 +24,9 @@ public class Run {
 		System.out.println("1- wysyłka");
 		System.out.println("2- UPO");
 		System.out.println("3- generuj źródła test");
-		Scanner scan = new Scanner(System.in);
-//		System.out.println(scan.next());
+		System.out.println("");
+		System.out.print("Twój wybór: ");
+		scan = new Scanner(System.in);
 		
 		File file = new File("/home/tee/test1");
 		byte[] docInByteArr = file.toString().getBytes();
@@ -51,6 +50,13 @@ public class Run {
 				bfw.write(ZonedDateTime.now().toString());
 				bfw.flush();
 				bfw.close();
+			break;
+			
+		case "5":
+			
+			String lista = new String("/home/tee/test.list");
+			bady.listOfDocument(lista);
+			
 			break;
 		default:
 			break;

@@ -1,6 +1,8 @@
 package com.test.edeklaracje;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import javax.xml.namespace.QName;
 import jakarta.xml.ws.WebEndpoint;
@@ -19,21 +21,22 @@ import jakarta.xml.ws.Service;
                   targetNamespace = "https://bramka.e-deklaracje.mf.gov.pl/")
 public class GateService extends Service {
 
-    public final static URL WSDL_LOCATION;
+    public static URI WSDL_LOCATION;
 
     public final static QName SERVICE = new QName("https://bramka.e-deklaracje.mf.gov.pl/", "GateService");
     public final static QName GateServiceSOAP11Port = new QName("https://bramka.e-deklaracje.mf.gov.pl/", "GateServiceSOAP11port");
     public final static QName GateServiceSOAP12Port = new QName("https://bramka.e-deklaracje.mf.gov.pl/", "GateServiceSOAP12port");
     static {
-        URL url = null;
+        URI uri = null;
         try {
-            url = new URL("https://test-bramka.edeklaracje.gov.pl/uslugi/dokumenty?wsdl");
-        } catch (MalformedURLException e) {
+            uri = new URI("https://test-bramka.edeklaracje.gov.pl/uslugi/dokumenty?wsdl");
+            WSDL_LOCATION= uri;
+        } catch (URISyntaxException e) {
             java.util.logging.Logger.getLogger(GateService.class.getName())
                 .log(java.util.logging.Level.INFO,
                      "Can not initialize the default wsdl from {0}", "https://test-bramka.edeklaracje.gov.pl/uslugi/dokumenty?wsdl");
         }
-        WSDL_LOCATION = url;
+        
     }
 
     public GateService(URL wsdlLocation) {
@@ -44,12 +47,12 @@ public class GateService extends Service {
         super(wsdlLocation, serviceName);
     }
 
-    public GateService() {
-        super(WSDL_LOCATION, SERVICE);
+    public GateService() throws MalformedURLException {
+        super(WSDL_LOCATION.toURL(), SERVICE);
     }
 
-    public GateService(WebServiceFeature ... features) {
-        super(WSDL_LOCATION, SERVICE, features);
+    public GateService(WebServiceFeature ... features) throws MalformedURLException {
+        super(WSDL_LOCATION.toURL(), SERVICE, features);
     }
 
     public GateService(URL wsdlLocation, WebServiceFeature ... features) {

@@ -1,10 +1,17 @@
 package org.mnapp.app;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.security.KeyStore;
 import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.net.ssl.SSLContext;
 import com.test.edeklaracje.GateService;
@@ -65,7 +72,7 @@ public class Bady {
 					
 					BufferedWriter bfw = new BufferedWriter(new FileWriter("/home/tee/test.list", true));
 					bfw.newLine();
-					bfw.write(ZonedDateTime.now().toString() + " " + refId.value + " " + status.value + " " + statusOpis.value);
+					bfw.write(ZonedDateTime.now().toString() + "_" + refId.value + "_" + status.value + " " + statusOpis.value);
 					bfw.flush();
 					bfw.close();
 					
@@ -75,6 +82,20 @@ public class Bady {
 
 		}
 		
+		public void listOfDocument(String list) throws IOException {
+			File file = new File(list);
+			BufferedReader bfReader = new BufferedReader(new FileReader(file));
+			String listOfRfIds = bfReader.lines().collect(Collectors.joining());
+//			List<String> listOfRfIds = bfReader.lines().toList();
+//			for (int i =0; listOfRfIds != null; i++) {
+//			String[] listRfIds = bfReader.lines().toList().toString().split(", ");
+//				String listOfRfIds = bfReader.readLine();
+			bfReader.close();
+			System.out.println(file.exists());
+			System.out.println(listOfRfIds);
+//			}
+			
+		}
 		
 		public void getUPO() {
 			try { 
@@ -87,7 +108,6 @@ public class Bady {
 				 // Skonfiguruj SSLContext 
 				 SSLContext sslContext = SSLContext.getInstance("TLS"); 
 				 // Inicjalizuj SSLContext z trustManager i keyManager 
-				 
 				
 //				// Utwórz instancję usługi 
 				GateService service = new GateService(); 
